@@ -3,3 +3,4 @@
 /src-wasm/pkg
 /src-wasm/target
 /src-wasm/Cargo.lock
+/dist
