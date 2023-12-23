@@ -16,14 +16,14 @@ xxxx and xxx
 
 
 <!-- links -->
-[your-project-path]:shaojintian/Best_README_template
+[your-project-path]:watchgou/col-ii
 [contributors-shield]: https://github.com/watchgou/col-ii.svg?style=flat-square
 [contributors-url]: https://github.com/watchgou/col-ii/graphs/contributors
-[forks-shield]: https://github.com/watchgou/col-ii.svg?style=flat-square
+[forks-shield]: https://img.shields.io/github/forks/watchgou/col-ii.svg?style=flat-square
 [forks-url]: https://github.com/watchgou/col-ii/network/members
-[stars-shield]: https://github.com/watchgou/col-ii.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/watchgou/col-ii.svg?style=flat-square
 [stars-url]: https://github.com/watchgou/col-ii/stargazers
-[issues-shield]:https://github.com/watchgou/col-ii.svg?style=flat-square
+[issues-shield]:https://img.shields.io/github/issues/watchgou/col-ii.svg?style=flat-square
 [issues-url]: https://github.com/watchgou/col-ii.svg
-[license-shield]: https://github.com/watchgou/col-ii.svg?style=flat-square
+[license-shield]: https://img.shields.io/github/license/watchgou/col-ii.svg?style=flat-square
 [license-url]: https://github.com/watchgou/col-ii/LICENSE
