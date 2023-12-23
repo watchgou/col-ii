@@ -26,4 +26,4 @@ xxxx and xxx
 [issues-shield]:https://img.shields.io/github/issues/watchgou/col-ii.svg?style=flat-square
 [issues-url]: https://github.com/watchgou/col-ii.svg
 [license-shield]: https://img.shields.io/github/license/watchgou/col-ii.svg?style=flat-square
-[license-url]: https://github.com/watchgou/col-ii/LICENSE
+[license-url]: https://github.com/watchgou/col-ii/blob/main/LICENSE
