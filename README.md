@@ -17,7 +17,7 @@ xxxx and xxx
 
 <!-- links -->
 [your-project-path]:watchgou/col-ii
-[contributors-shield]: https://github.com/watchgou/col-ii.svg?style=flat-square
+[contributors-shield]:https://img.shields.io/github/contributors/watchgou/col-ii.svg?style=flat-square
 [contributors-url]: https://github.com/watchgou/col-ii/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/watchgou/col-ii.svg?style=flat-square
 [forks-url]: https://github.com/watchgou/col-ii/network/members
