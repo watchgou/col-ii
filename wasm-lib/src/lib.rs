@@ -1,21 +1,16 @@
 use wasm_bindgen::prelude::*;
 
-enum JsError<'a> {
-    Err(&'a str),
+enum JsError {
+    TagNotExist,
 }
 
-impl<'a> JsError<'a> {
-    /// Construct a JavaScript `Error` object with a string message
-    #[inline]
-    pub fn new_err(value: &'a str) -> JsError<'a> {
-        Self::Err(value)
-    }
-    #[inline]
-    pub fn message(&self) -> &str {
+impl JsError {
+    fn message(&self) -> String {
         match self {
-            JsError::Err(err_value) => err_value,
+            JsError::TagNotExist => String::from("tag does not exist"),
         }
     }
+    
 }
 
 #[wasm_bindgen]
@@ -25,9 +20,9 @@ pub fn create_tag() {
     if let Some(symbol) = symbol {
         symbol.set_inner_html("<div><h1>Hello, web-sys!</h1></div>");
     } else {
-        let err = JsValue::from(JsError::new_err("tag does not exist").message());
+        let err_msg = JsValue::from(JsError::TagNotExist.message());
         let array = js_sys::Array::new();
-        array.set(0, err);
+        array.set(0, err_msg);
         web_sys::console::log(&array);
     }
 }
