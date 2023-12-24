@@ -1,10 +1,10 @@
 build:
 	yarn install
-	wasm-pack build src-wasm
+	wasm-pack build wasm-lib
 run: 
 	yarn vite
 
 clean:
 	rm -rf node_modules
-	rm -rf src-wasm/pkg
-	cd src-wasm && cargo clean
+	rm -rf wasm-lib/pkg
+	cd wasm-lib && cargo clean
