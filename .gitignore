@@ -4,3 +4,4 @@
 /wasm-lib/target
 /wasm-lib/Cargo.lock
 /dist
+/.vscode
