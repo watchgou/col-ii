@@ -14,3 +14,6 @@ git:
 	git add .
 	git commit -m "update"
 	git push -u origin main	
+
+doc:
+	cd wasm-lib && cargo doc --open

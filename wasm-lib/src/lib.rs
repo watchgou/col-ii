@@ -49,3 +49,8 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     let json = JsFuture::from(value.json()?).await?;
     Ok(json)
 }
+
+
+pub mod transfer{
+    tonic::include_proto!("transfer");
+}
