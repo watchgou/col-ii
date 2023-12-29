@@ -1,5 +1,14 @@
 fn main() -> std::io::Result<()> {
-    tonic_build::compile_protos("proto/transfer.proto")?;
-    println!("hello");
+    //    protobuf_codegen_pure::Codegen::new().out_dir("src/")
+    //    .include("protos/")
+    //    .inputs(&["protos/transfer.proto"]).run()?;
+
+    protobuf_codegen::Codegen::new()
+        .protoc()
+        .protoc_path(&protoc_bin_vendored::protoc_bin_path().unwrap())
+        .includes(&["protos/"])
+        .input("protos/transfer.proto")
+        .cargo_out_dir("protos")
+        .run_from_script();
     Ok(())
 }

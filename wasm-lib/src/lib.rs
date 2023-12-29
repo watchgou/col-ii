@@ -1,6 +1,8 @@
+
 use wasm_bindgen::prelude::*;
 
 mod err;
+
 use err::JsErr;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};
@@ -50,7 +52,16 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     Ok(json)
 }
 
+// pub fn test_protobuf(source:[u8]) {
+//     /// protobuf  反序列化
+//    let info= match transfer::Transfer::parse_from_bytes(&source) {
+//         Ok(data)=>data,
+//         Err(err)=>println!("{:?}",err)
+//     };
 
-pub mod transfer{
-    tonic::include_proto!("transfer");
-}
+//    let transfer= transfer::Transfer::default();
+//    transfer.amount=1;
+//    transfer.from="jon".to_string();
+//    transfer.to="tom".to_string();
+//    protobuf::rt::CachedSize
+// }

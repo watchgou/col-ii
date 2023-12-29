@@ -11,8 +11,9 @@ crate-type = ["cdylib"]
 wasm-bindgen = "0.2.84"
 js-sys = "0.3.60"
 wasm-bindgen-futures = "0.4.39"
-tonic = "0.10.2"
-prost = "0.12.3"
+protobuf = "3.3.0"
+
+
 
 [dependencies.web-sys]
 version = "0.3.6"
@@ -31,4 +32,5 @@ features = [
     ]
 
 [build-dependencies]
-tonic-build = "0.10.2"
+protobuf-codegen = "3.3.0"
+protoc-bin-vendored = "3.0.0"
