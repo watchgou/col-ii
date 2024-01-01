@@ -1,8 +1,10 @@
-
+use protobuf::Message;
 use wasm_bindgen::prelude::*;
 
-mod err;
 
+mod err;
+mod transfer;
+use transfer::transfer::RequestTran;
 use err::JsErr;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};
@@ -10,7 +12,7 @@ use web_sys::{Request, RequestInit, Response};
 #[wasm_bindgen]
 pub async fn create_tag() {
     let document = web_sys::window().unwrap().document().unwrap();
-    let symbol = document.query_selector("#root1").unwrap();
+    let symbol = document.query_selector("#root").unwrap();
     if let Some(symbol) = symbol {
         symbol.set_inner_html("<div><h1>Hello, web-sys!</h1></div>");
     } else {
@@ -52,16 +54,14 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     Ok(json)
 }
 
-// pub fn test_protobuf(source:[u8]) {
-//     /// protobuf  反序列化
-//    let info= match transfer::Transfer::parse_from_bytes(&source) {
-//         Ok(data)=>data,
-//         Err(err)=>println!("{:?}",err)
-//     };
+#[wasm_bindgen]
+pub fn test_protobuf() ->Result<Vec<u8>, JsValue>{
+    // protobuf  反序列化
+    let mut request_tran: RequestTran = RequestTran::new();
+    request_tran.amount = 1;
+    request_tran.to = "test".to_string();
+    request_tran.from = "test".to_string();
+    let bytes = request_tran.write_to_bytes().unwrap();
+    Ok(bytes)
 
-//    let transfer= transfer::Transfer::default();
-//    transfer.amount=1;
-//    transfer.from="jon".to_string();
-//    transfer.to="tom".to_string();
-//    protobuf::rt::CachedSize
-// }
+}

@@ -5,3 +5,4 @@
 /wasm-lib/Cargo.lock
 /dist
 /.vscode
+/wasm-lib/src/transfer

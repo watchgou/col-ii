@@ -30,7 +30,3 @@ features = [
     "RequestMode",
     "Response",
     ]
-
-[build-dependencies]
-protobuf-codegen = "3.3.0"
-protoc-bin-vendored = "3.0.0"
