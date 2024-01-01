@@ -1,7 +1,7 @@
 build:
 	yarn install
 	mkdir wasm-lib/src/transfer 
-	protoc --rust_out=wasm-lib/src/transfer wasm-lib/protos/transfer.proto
+	protoc --rust_out=wasm-lib/src/transfer protos/transfer.proto
 	wasm-pack build wasm-lib
 
 run: 
