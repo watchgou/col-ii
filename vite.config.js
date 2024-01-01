@@ -8,15 +8,15 @@ export default defineConfig({
     wasm(),
     topLevelAwait()
   ],
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://localhost:8080",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //   },
+  // },
   // build: {
   //   rollupOptions: {
   //     output: {

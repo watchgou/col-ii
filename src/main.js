@@ -3,11 +3,11 @@ import protobuf from "protobufjs"
 
 wasm.create_tag();
 
-wasm.get("http://127.0.0.1:8080/api/v1/simple").then((res) => {
+wasm.get("http://192.168.50.154:8080/api/v1/simple").then((res) => {
     // console.log(res);
 });
 
-wasm.post("http://127.0.0.1:8080/api/v1/simple", JSON.stringify({ "name": "test" })).then((res) => {
+wasm.post("http://192.168.50.154:8080/api/v1/simple", JSON.stringify({ "name": "test" })).then((res) => {
     //console.log(res);
 });
 
