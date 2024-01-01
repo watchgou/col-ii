@@ -12,6 +12,8 @@ wasm-bindgen = "0.2.84"
 js-sys = "0.3.60"
 wasm-bindgen-futures = "0.4.39"
 protobuf = "3.3.0"
+serde-wasm-bindgen = "0.6.3"
+serde = "1.0.193"
 
 
 

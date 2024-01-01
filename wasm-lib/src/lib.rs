@@ -1,11 +1,11 @@
 use protobuf::Message;
+use serde::ser::SerializeStruct;
 use wasm_bindgen::prelude::*;
-
 
 mod err;
 mod transfer;
-use transfer::transfer::RequestTran;
 use err::JsErr;
+use transfer::transfer::RequestTran;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};
 
@@ -55,7 +55,7 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
 }
 
 #[wasm_bindgen]
-pub fn test_protobuf() ->Result<Vec<u8>, JsValue>{
+pub fn set_protobuf() -> Result<Vec<u8>, JsValue> {
     // protobuf  反序列化
     let mut request_tran: RequestTran = RequestTran::new();
     request_tran.amount = 1;
@@ -63,5 +63,24 @@ pub fn test_protobuf() ->Result<Vec<u8>, JsValue>{
     request_tran.from = "test".to_string();
     let bytes = request_tran.write_to_bytes().unwrap();
     Ok(bytes)
+}
 
+
+#[wasm_bindgen]
+pub fn get_protobuf(source: Vec<u8>)->Result<JsValue,JsValue> {
+    // protobuf  反序列化
+    let request_tran = RequestTran::parse_from_bytes(&source).unwrap();
+    Ok(serde_wasm_bindgen::to_value(&request_tran)?)
+}
+
+impl serde::Serialize for RequestTran {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer {
+            let mut s = serializer.serialize_struct("Person", 3)?;
+            s.serialize_field("from", &self.from)?;
+            s.serialize_field("to", &self.to)?;
+            s.serialize_field("amount", &self.amount)?;
+            s.end()
+    }
 }
