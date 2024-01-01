@@ -4,6 +4,9 @@
 
 xxxx and xxx
 
+### cargo install protoc-gen-rust
+
+
 <!-- PROJECT SHIELDS -->
 
 [![Contributors][contributors-shield]][contributors-url]

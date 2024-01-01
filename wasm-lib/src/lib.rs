@@ -56,7 +56,7 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
 
 #[wasm_bindgen]
 pub fn set_protobuf() -> Result<Vec<u8>, JsValue> {
-    // protobuf  反序列化
+    // protobuf  序列化
     let mut request_tran: RequestTran = RequestTran::new();
     request_tran.amount = 1;
     request_tran.to = "test".to_string();
