@@ -4,9 +4,6 @@
 
 xxxx and xxx
 
-### cargo install protoc-gen-rust
-
-
 <!-- PROJECT SHIELDS -->
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -15,6 +12,8 @@ xxxx and xxx
 [![Issues][issues-shield]][issues-url]
 [![UN License][license-shield]][license-url]
 
+
+### cargo install protoc-gen-rust
 
 
 
