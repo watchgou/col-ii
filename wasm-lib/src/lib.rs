@@ -77,7 +77,7 @@ impl serde::Serialize for RequestTran {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer {
-            let mut s = serializer.serialize_struct("Person", 3)?;
+            let mut s = serializer.serialize_struct("Transfer", 3)?;
             s.serialize_field("from", &self.from)?;
             s.serialize_field("to", &self.to)?;
             s.serialize_field("amount", &self.amount)?;
