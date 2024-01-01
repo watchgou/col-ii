@@ -54,6 +54,10 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     Ok(json)
 }
 
+/// 序列化
+/// ```
+/// const request_transfer =  wasm.set_protobuf();
+/// ```
 #[wasm_bindgen]
 pub fn set_protobuf() -> Result<Vec<u8>, JsValue> {
     // protobuf  序列化
@@ -66,12 +70,16 @@ pub fn set_protobuf() -> Result<Vec<u8>, JsValue> {
 }
 
 
+/// 接受 u8数组，反序列化 
 #[wasm_bindgen]
 pub fn get_protobuf(source: Vec<u8>)->Result<JsValue,JsValue> {
     // protobuf  反序列化
     let request_tran = RequestTran::parse_from_bytes(&source).unwrap();
     Ok(serde_wasm_bindgen::to_value(&request_tran)?)
 }
+
+
+
 
 impl serde::Serialize for RequestTran {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>

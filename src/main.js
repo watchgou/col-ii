@@ -13,7 +13,7 @@ wasm.post("http://127.0.0.1:8080/api/v1/simple", JSON.stringify({ "name": "test"
 
 
 
-protobuf.load("protos/transfer.proto", (err, root) => {
+protobuf.load("../protos/transfer.proto", (err, root) => {
     if (err) throw err;
     // 获取消息类型
     const RequestTran = root.lookupType("RequestTran");

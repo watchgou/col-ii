@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && mkdir dist/protos && cp protos/* dist/protos/",
     "preview": "vite preview"
   },
   "dependencies": {
