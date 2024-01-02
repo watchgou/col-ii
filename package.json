@@ -2,14 +2,15 @@
   "name": "col-ii",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "unencumbered",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && mkdir dist/protos && cp protos/* dist/protos/",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "proto-js": "mkdir ./src/protos  && pbjs ./protos/transfer.proto --es6 src/protos/transfer.js"
   },
   "dependencies": {
-    "protobufjs": "^7.2.5",
+    "pbjs": "^0.0.14",
     "vite": "^5.0.10"
   },
   "devDependencies": {

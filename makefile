@@ -3,6 +3,7 @@ build:
 	mkdir wasm-lib/src/transfer 
 	protoc --rust_out=wasm-lib/src/transfer protos/transfer.proto
 	wasm-pack build wasm-lib
+	yarn proto-js
 	yarn build
 
 run:
@@ -10,14 +11,15 @@ run:
 	mkdir wasm-lib/src/transfer 
 	protoc --rust_out=wasm-lib/src/transfer protos/transfer.proto
 	wasm-pack build wasm-lib
+	yarn proto-js
 	yarn vite
 
 clean:
-	rm -rf dist
 	rm -rf node_modules
 	rm -rf wasm-lib/pkg
 	rm -rf wasm-lib/src/transfer
 	cd wasm-lib && cargo clean
+	rm src/protos/*.js
 
 git:
 	git add .

@@ -21,6 +21,7 @@ export default defineConfig({
   //   rollupOptions: {
   //     output: {
   //       assetFileNames: (assetInfo) => {
+  //         //console.log("s ",assetInfo.name);
   //         if (/\.(proto)$/.test(assetInfo.name)) { // 匹配资源文件后缀
   //           return `protos/[name].[hash][ext]`;  // 创建media文件夹存放匹配的资源文件,name为该文件的原名，hash为哈希值，ext为文件后缀名，以[name].[hash][ext]命名规则
   //         }

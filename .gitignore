@@ -6,3 +6,4 @@
 /dist
 /.vscode
 /wasm-lib/src/transfer
+/src/protos/transfer.js
