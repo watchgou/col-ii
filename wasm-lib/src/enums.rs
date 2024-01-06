@@ -1,11 +1,9 @@
 #[cfg(test)]
 use mockall::{automock, predicate::*};
-
 pub mod err {
     pub enum JsErr {
         TagNotExist,
     }
-
     impl JsErr {
         pub fn message(&self) -> &str {
             match self {
@@ -14,9 +12,7 @@ pub mod err {
         }
     }
 }
-
 pub mod constants {
-
     pub enum Style {
         DEFAULT,
         CALL(String),
@@ -34,7 +30,6 @@ pub mod constants {
 pub trait Fool {
     fn foo(&self, x: u32) -> u32;
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -49,7 +44,4 @@ mod tests {
         mock.expect_foo().with(eq(3)).returning(|x| x + 1);
         assert_eq!(mock.foo(3), 4);
     }
-
-
-
 }
