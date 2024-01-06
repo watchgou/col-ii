@@ -24,7 +24,7 @@ pub mod constants {
     impl Style {
         pub fn code(&self) -> &str {
             match self {
-                Self::DEFAULT => "",
+                Self::DEFAULT => "default",
                 Self::CALL(content) => content,
             }
         }
@@ -49,4 +49,7 @@ mod tests {
         mock.expect_foo().with(eq(3)).returning(|x| x + 1);
         assert_eq!(mock.foo(3), 4);
     }
+
+
+
 }

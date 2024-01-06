@@ -6,6 +6,7 @@ mod canvas;
 mod enums;
 mod transfer;
 use enums::err::JsErr;
+use enums::constants::Style;
 use transfer::transfer::RequestTran;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};

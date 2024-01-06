@@ -1,15 +1,16 @@
 use crate::JsErr;
+use crate::Style;
 use wasm_bindgen::JsValue;
 use web_sys::Element;
 
 pub fn draw_canvas() -> Element {
-    let document = web_sys::window().unwrap().document().expect("error");
+    let document = web_sys::window().unwrap().document().expect(Style::CALL("web-sys error".to_string()).code());
     if let Some(id) = document.query_selector("#learn-draw").unwrap() {
         let canvas_tag = r#"
         <canvas id="canvas-content"></canvas>
         "#;
         id.set_inner_html(canvas_tag);
-        let canvas_ele = document.query_selector("#canvas-content").unwrap().unwrap();
+        let canvas_ele = document.query_selector("#canvas-content").unwrap().expect(Style::DEFAULT.code());
         canvas_ele
             .set_attribute(
                 "style",
