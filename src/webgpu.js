@@ -7,6 +7,7 @@ export async function draw_gpu() {
 
     const canvas = document.getElementById("canvas-content");
     const context = canvas.getContext("webgpu");
+    console.log("context", context);
     context.configure({
         device: device,
         format: navigator.gpu.getPreferredCanvasFormat(),
@@ -14,19 +15,20 @@ export async function draw_gpu() {
     });
 
 
-    const vertexs = new Float32Array([
+    const vertex = new Float32Array([
         0.0, 0.0, 0.0,
         1.0, 0.0, 0.0,
         0.0, 1.0, 0.0,
+
     ]);
 
     const vertexBuffer = device.createBuffer({
-        size: vertexs.byteLength,
+        size: vertex.byteLength,
         usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
 
     });
 
-    device.queue.writeBuffer(vertexBuffer, 0, vertexs);
+    device.queue.writeBuffer(vertexBuffer, 0, vertex);
 
 
     const pipeline = device.createRenderPipeline({
@@ -43,7 +45,7 @@ export async function draw_gpu() {
             entryPoint: "main",
             buffers: [
                 {
-                    arrayStride: 12,
+                    arrayStride: 3*4,
                     attributes: [
                         {
                             shaderLocation: 0,
@@ -74,8 +76,8 @@ export async function draw_gpu() {
     });
     11
 
-    const commadnEncode = device.createCommandEncoder();
-    const renderPass = commadnEncode.beginRenderPass({
+    const commandEncode = device.createCommandEncoder();
+    const renderPass = commandEncode.beginRenderPass({
         colorAttachments: [
             {
                 view: context.getCurrentTexture().createView(),
@@ -95,6 +97,6 @@ export async function draw_gpu() {
     renderPass.setVertexBuffer(0, vertexBuffer);
     renderPass.draw(3);
     renderPass.end();
-    const commandBuffer = commadnEncode.finish();
+    const commandBuffer = commandEncode.finish();
     device.queue.submit([commandBuffer]);
 }
