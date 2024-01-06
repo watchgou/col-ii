@@ -1,10 +1,8 @@
 
 
 export async function draw_gpu() {
-
     const adapter = await navigator.gpu.requestAdapter();
     const device = await adapter.requestDevice();
-
     const canvas = document.getElementById("canvas-content");
     const context = canvas.getContext("webgpu");
     console.log("context", context);
@@ -13,24 +11,17 @@ export async function draw_gpu() {
         format: navigator.gpu.getPreferredCanvasFormat(),
         alphaMode: "premultiplied",
     });
-
-
     const vertex = new Float32Array([
         0.0, 0.0, 0.0,
         1.0, 0.0, 0.0,
         0.0, 1.0, 0.0,
 
     ]);
-
     const vertexBuffer = device.createBuffer({
         size: vertex.byteLength,
         usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
-
     });
-
     device.queue.writeBuffer(vertexBuffer, 0, vertex);
-
-
     const pipeline = device.createRenderPipeline({
         layout: 'auto',
         vertex: {
@@ -74,8 +65,6 @@ export async function draw_gpu() {
             topology: "triangle-list",
         }
     });
-    11
-
     const commandEncode = device.createCommandEncoder();
     const renderPass = commandEncode.beginRenderPass({
         colorAttachments: [
@@ -91,7 +80,6 @@ export async function draw_gpu() {
                 }
             }
         ]
-
     });
     renderPass.setPipeline(pipeline);
     renderPass.setVertexBuffer(0, vertexBuffer);
