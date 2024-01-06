@@ -16,6 +16,7 @@ run:
 
 clean:
 	rm -rf node_modules
+	rm -rf src/protos
 	rm -rf wasm-lib/pkg
 	rm -rf wasm-lib/src/transfer
 	cd wasm-lib && cargo clean
