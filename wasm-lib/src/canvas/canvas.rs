@@ -14,7 +14,7 @@ pub fn draw_canvas() -> Element {
         canvas_ele
             .set_attribute(
                 "style",
-                "height: 500px; width: 500px; background-color: white;",
+                "height: 50%; width: 50%;",
             )
             .unwrap();
         id

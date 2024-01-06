@@ -52,7 +52,7 @@ export async function draw_gpu() {
                 code: /* wgsl */`
                   @fragment
                   fn main() -> @location(0) vec4<f32> {
-                    return vec4<f32>(1, 0.0, 0.0, 1.0);
+                    return vec4<f32>(0.5, 0.5, 0.0, 1.0);
                   }
                   `,
             }),
@@ -76,7 +76,7 @@ export async function draw_gpu() {
                     r: 0,
                     g: 0,
                     b: 0,
-                    a: 1
+                    a: 0,
                 }
             }
         ]

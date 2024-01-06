@@ -20,7 +20,7 @@ clean:
 	rm -rf wasm-lib/pkg
 	rm -rf wasm-lib/src/transfer
 	cd wasm-lib && cargo clean
-	rm src/protos/*.js
+	rm -rf dist
 
 git:
 	git add .

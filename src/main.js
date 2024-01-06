@@ -1,6 +1,6 @@
 import * as wasm from "../wasm-lib/pkg"
 import * as util from "./util.js"
-import * as webgpu_js from "./webgpu.js" 
+import * as gpu_js from "./webgpu.js" 
 
 
 wasm.create_tag();
@@ -15,7 +15,7 @@ wasm.create_tag();
 
 util.transfer_data();
 
-webgpu_js.draw_gpu();
+gpu_js.draw_gpu();
 
 
 
