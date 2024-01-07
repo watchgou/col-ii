@@ -2,28 +2,23 @@ use protobuf::Message;
 use serde::ser::SerializeStruct;
 use wasm_bindgen::prelude::*;
 
-mod canvas;
+mod create_element;
 mod enums;
 mod transfer;
 use enums::err::JsErr;
-use enums::constants::Style;
 use transfer::transfer::RequestTran;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};
 
 #[wasm_bindgen]
-pub async fn create_tag() {
+pub fn create_element(selectors: String, html: String, attribute: String, content: String) {
     let document = web_sys::window().unwrap().document().unwrap();
-    let symbol = document.query_selector("#root").unwrap();
-    if let Some(symbol) = symbol {
-        let body_ele = r#"
-        <div id="learn-draw"></div>
-        "#;
-        symbol.set_inner_html(body_ele);
-        let canvas_ele = canvas::canvas::draw_canvas();
-        symbol.append_child(&canvas_ele).unwrap();
+    let element_root = document.query_selector(&selectors).unwrap();
+    if let Some(ele) = element_root {
+        let element = create_element::element::draw_canvas(html, attribute, content);
+        ele.append_child(&element).unwrap();
     } else {
-        let err_msg = JsValue::from(JsErr::TagNotExist.message());
+        let err_msg = JsValue::from(JsErr::TagNotExist(&selectors).code());
         let array = js_sys::Array::new();
         array.push(&err_msg);
         web_sys::console::log(&array);

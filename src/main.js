@@ -1,21 +1,14 @@
-import * as wasm from "../wasm-lib/pkg"
 import * as util from "./util.js"
-import * as gpu_js from "./webgpu.js" 
+import * as wgpu from "./wgpu.js"
+import * as matrix from "gl-matrix"
 
 
-wasm.create_tag();
 
-// wasm.get("http://127.0.0.1:8080/api/v1/simple").then((res) => {
-//     // console.log(res);
-// });
+util.createElement("#root","div","id","div-content");
+util.createElement("#div-content","canvas","id","canvas-content");
 
-// wasm.post("http://127.0.0.1:8080/api/v1/simple", JSON.stringify({ "name": "test" })).then((res) => {
-//     //console.log(res);
-// });
-
-util.transfer_data();
-
-gpu_js.draw_gpu();
+wgpu.draw();
+console.log("mat4",matrix.mat4);
 
 
 

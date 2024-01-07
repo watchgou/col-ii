@@ -1,27 +1,15 @@
 #[cfg(test)]
 use mockall::{automock, predicate::*};
 pub mod err {
-    pub enum JsErr {
-        TagNotExist,
+    pub enum JsErr <'a>{
+        TagNotExist(&'a str),
+        ElementCreateFailed(&'a str),
     }
-    impl JsErr {
-        pub fn message(&self) -> &str {
+    impl<'a> JsErr<'a> {
+        pub fn code(&self) -> String {
             match self {
-                Self::TagNotExist => "tag does not exist",
-            }
-        }
-    }
-}
-pub mod constants {
-    pub enum Style {
-        DEFAULT,
-        CALL(String),
-    }
-    impl Style {
-        pub fn code(&self) -> &str {
-            match self {
-                Self::DEFAULT => "default",
-                Self::CALL(content) => content,
+                Self::TagNotExist(tar)=>format!("{} tag does not exist",tar),
+                Self::ElementCreateFailed(ele)=>format!("{} create element failed",ele),
             }
         }
     }
@@ -33,11 +21,7 @@ pub trait Fool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    #[test]
-    fn test_code() {
-        assert_eq!(constants::Style::CALL("hello".to_string()).code(), "hello");
-        assert_eq!(constants::Style::DEFAULT.code(), "");
-    }
+
     #[test]
     fn test_trait() {
         let mut mock: MockFool = MockFool::new();

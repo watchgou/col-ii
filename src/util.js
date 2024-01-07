@@ -1,11 +1,34 @@
 import * as wasm from "../wasm-lib/pkg"
 import * as transfer from "./protos/transfer"
 
-export function transfer_data() {
-    let resp = wasm.set_protobuf();
-    const message = transfer.decodeRequestTran(resp);
-    console.log(message);
-    const u8_vec = transfer.encodeRequestTran({ from: "jon", to: "jack", amount: 1 });
-    const get_request_tran = wasm.get_protobuf(u8_vec);
-    console.log(get_request_tran);
+
+export function encodeRequestTran(data){
+   return transfer.encodeRequestTran(data);
+}
+
+export function decodeRequestTran(binary){
+    return transfer.decodeRequestTran(binary);
+}
+
+
+export function get(url, callback) {
+    wasm.get(url).then((res) => {
+        callback(res);
+    });
+}
+
+export function set(url, data, callback) {
+    wasm.post(url, data).then((res) => {
+        callback(res);
+    });
+}
+
+
+
+export function wasmCreateElement(){
+    wasm.create_tag();
+}
+
+export function createElement(selector,html,attribute,content){
+    wasm.create_element(selector,html,attribute,content);
 }

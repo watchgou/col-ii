@@ -1,6 +1,6 @@
 
 
-export async function draw_gpu() {
+export async function draw() {
     const adapter = await navigator.gpu.requestAdapter();
     const device = await adapter.requestDevice();
     const canvas = document.getElementById("canvas-content");
