@@ -10,6 +10,7 @@
     "proto-js": "mkdir ./src/protos  && pbjs ./protos/transfer.proto --es6 src/protos/transfer.js"
   },
   "dependencies": {
+    "@webgpu/types": "^0.1.40",
     "gl-matrix": "^3.4.3",
     "pbjs": "^0.0.14",
     "vite": "^5.0.10"
