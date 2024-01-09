@@ -9,7 +9,7 @@ export async function draw() {
     console.log("mat4 ", mat4);
     console.log("mat4T ", mat4T);
 
-    // 4x4 matrix 旋转，旋转后的matrix 赋值给mat4
+    // 4x4 matrix 缩放，缩放后的matrix 赋值给mat4
     const mat4S = glMatrix.mat4.create();
     glMatrix.mat4.scale(mat4S, mat4, [10, 1, 1]);
     console.log("mat4S ", mat4S);
