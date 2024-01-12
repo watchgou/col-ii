@@ -1,6 +1,7 @@
 syntax = "proto3";
 package transfer;
 
+
 message RequestTran {
     string from = 1;
     string to = 2;
