@@ -2,25 +2,6 @@ import * as  glMatrix from "gl-matrix"
 import { vertexWgsl, fragmentWgsl } from "./wgsl"
 
 export async function draw() {
-    // 4x4 matrix 平移，平移后的matrix 赋值给mat4T
-    const mat4 = glMatrix.mat4.create();
-    const mat4T = glMatrix.mat4.create();
-    glMatrix.mat4.translate(mat4T, mat4, [2, 0, 0]);
-    console.log("mat4 ", mat4);
-    console.log("mat4T ", mat4T);
-
-    // 4x4 matrix 缩放，缩放后的matrix 赋值给mat4
-    const mat4S = glMatrix.mat4.create();
-    glMatrix.mat4.scale(mat4S, mat4, [10, 1, 1]);
-    console.log("mat4S ", mat4S);
-
-    //4x4 matrix 旋转，旋转后的matrix 赋值给mat4X
-    const mat4X = glMatrix.mat4.create();
-    // Math.PI 108
-    glMatrix.mat4.rotateX(mat4X, mat4, Math.PI / 4);
-    console.log("mat4X ", mat4X);
-
-
     const adapter = await navigator.gpu.requestAdapter();
     const device = await adapter.requestDevice();
     const canvas = document.getElementById("canvas-content");
@@ -41,11 +22,12 @@ export async function draw() {
         0.0, 1.0, 0.0, 0.0,
         0.0, 0.0, 1.0, 0.0,
         -0.5, 0.0, 0.0, 1.0
-    ])
+    ]);
 
     const colorArray = new Float32Array([
-        1.0, 0.5, 0.0
-    ])
+        0.2, 0.3, 0.0
+    ]);
+
     const vertexBuffer = device.createBuffer({
         size: vertex.byteLength,
         usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,

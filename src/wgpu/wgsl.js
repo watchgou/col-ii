@@ -14,3 +14,28 @@ export const fragmentWgsl = /*wgsl*/ `
     return vec4<f32>(color, 1.0);
     }
 `;
+
+export const shader = /*wgsl*/ `
+    struct Output {
+        @builtin(position) Position : vec4<f32>,
+        @location(0) coord : vec2<f32>,
+    }
+    @vertex
+    fn vs_main(@location(0) pos: vec4<f32>, @location(1) coord: vec2<f32> ) -> Output {
+        var output: Output;
+        output.Position = pos;
+        output.coord = coord;
+        return output;
+    }
+    @fragment
+    fn fs_main(
+        in: Output
+    ) -> @location(0) vec4<f32> {
+        let coords = in.coord;
+        let r = dot(coords,coords);
+        if (r > 1) {
+            discard;
+        }
+        return vec4<f32>(0.0, 0.0, 0.0, 0.0);
+    }
+`
