@@ -1,35 +1,44 @@
 use protobuf::Message;
 use serde::ser::SerializeStruct;
 use wasm_bindgen::prelude::*;
+use wasm_bindgen_futures::JsFuture;
+use web_sys::{Request, RequestInit, Response};
+
 
 mod create_element;
 mod enums;
 mod transfer;
 use enums::err::JsErr;
 use transfer::transfer::RequestTran;
-use wasm_bindgen_futures::JsFuture;
-use web_sys::{Request, RequestInit, Response};
+
+
 
 #[wasm_bindgen]
 pub fn create_element(selectors: String, html: String, attribute: String, content: String) {
+
     let document = web_sys::window().unwrap().document().unwrap();
     let element_root = document.query_selector(&selectors).unwrap();
+
     if let Some(ele) = element_root {
         let element = create_element::element::draw_canvas(html, attribute, content);
         ele.append_child(&element).unwrap();
+
     } else {
         let err_msg = JsValue::from(JsErr::TagNotExist(&selectors).code());
         let array = js_sys::Array::new();
         array.push(&err_msg);
         web_sys::console::log(&array);
+
     }
 }
 
 #[wasm_bindgen]
 pub async fn get(url: String) -> Result<JsValue, JsValue> {
+
     let mut opts = RequestInit::new();
     opts.method("GET");
     opts.mode(web_sys::RequestMode::Cors);
+
     let request = Request::new_with_str_and_init(&url, &opts)?;
     let window = web_sys::window().unwrap();
     let resp_value = JsFuture::from(window.fetch_with_request(&request)).await?;
@@ -40,6 +49,7 @@ pub async fn get(url: String) -> Result<JsValue, JsValue> {
 
 #[wasm_bindgen]
 pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
+
     let mut opts = RequestInit::new();
     opts.method("POST");
     opts.mode(web_sys::RequestMode::Cors);
@@ -47,6 +57,7 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
         let param = JsValue::from(val);
         opts.body(Some(&param));
     }
+
     let request = Request::new_with_str_and_init(&url, &opts)?;
     request.headers().set("Content-Type", "application/json")?;
     let window = web_sys::window().unwrap();
