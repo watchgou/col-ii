@@ -36,6 +36,6 @@ export const shader = /*wgsl*/ `
         if (r > 1) {
             discard;
         }
-        return vec4<f32>(0.0, 0.0, 0.0, 0.0);
+        return vec4<f32>(1.0, 1.0, 0.0, 0.0);
     }
 `
