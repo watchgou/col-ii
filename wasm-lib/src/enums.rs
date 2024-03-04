@@ -22,13 +22,23 @@ pub mod err {
 
 pub mod global_static {
 
-    pub static GET: &str = "GET";
+    pub enum Constant {
+        Get,
+        Post,
+        ContentType,
+        ApplicationJson,
+    }
 
-    pub static POST: &str = "POST";
-
-    pub static APPLICATION_JSON: &str = "application/json";
-
-    pub static CONTENT_TYPE: &str = "Content-Type";
+    impl Constant {
+        pub fn value(&self) -> &str {
+            match self {
+                Self::Get => "GET",
+                Self::Post => "POST",
+                Self::ContentType => "Content-Type",
+                Self::ApplicationJson => "application/json",
+            }
+        }
+    }
 }
 
 #[cfg_attr(test, automock)]
@@ -37,7 +47,6 @@ pub trait Fool {
 }
 #[cfg(test)]
 mod tests {
-    use protobuf::UnknownFields;
 
     use super::*;
 
