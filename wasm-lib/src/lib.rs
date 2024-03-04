@@ -1,14 +1,15 @@
+mod create_element;
+mod enums;
+mod transfer;
+
 use protobuf::Message;
 use serde::ser::SerializeStruct;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, Response};
 
-mod create_element;
-mod enums;
-mod transfer;
-use enums::constant;
 use enums::err::JsErr;
+use enums::global_static;
 use transfer::transfer::RequestTran;
 
 #[wasm_bindgen]
@@ -16,9 +17,9 @@ pub fn create_element(selectors: String, html: String, attribute: String, conten
     let document = web_sys::window().unwrap().document().unwrap();
     let element_root = document.query_selector(&selectors).unwrap();
 
-    if let Some(ele) = element_root {
+    if let Some(e_root) = element_root {
         let element = create_element::element::draw_canvas(html, attribute, content);
-        ele.append_child(&element).unwrap();
+        e_root.append_child(&element).unwrap();
     } else {
         let err_msg = JsValue::from(JsErr::TagNotExist(&selectors).code());
         let array = js_sys::Array::new();
@@ -30,7 +31,7 @@ pub fn create_element(selectors: String, html: String, attribute: String, conten
 #[wasm_bindgen]
 pub async fn get(url: String) -> Result<JsValue, JsValue> {
     let mut opts = RequestInit::new();
-    opts.method(constant::GET);
+    opts.method(global_static::GET);
     opts.mode(web_sys::RequestMode::Cors);
 
     let request = Request::new_with_str_and_init(&url, &opts)?;
@@ -44,7 +45,7 @@ pub async fn get(url: String) -> Result<JsValue, JsValue> {
 #[wasm_bindgen]
 pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     let mut opts = RequestInit::new();
-    opts.method(constant::POST);
+    opts.method(global_static::POST);
     opts.mode(web_sys::RequestMode::Cors);
     if !val.is_empty() {
         let param = JsValue::from(val);
@@ -54,7 +55,7 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     let request = Request::new_with_str_and_init(&url, &opts)?;
     request
         .headers()
-        .set(constant::CONTENT_TYPE, constant::APPLICATION_JSON)?;
+        .set(global_static::CONTENT_TYPE, global_static::APPLICATION_JSON)?;
     let window = web_sys::window().unwrap();
     let resp_value = JsFuture::from(window.fetch_with_request(&request)).await?;
     let value: Response = resp_value.dyn_into()?;

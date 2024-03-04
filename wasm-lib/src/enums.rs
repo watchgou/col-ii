@@ -20,7 +20,7 @@ pub mod err {
     }
 }
 
-pub mod constant {
+pub mod global_static {
 
     pub static GET: &str = "GET";
 
