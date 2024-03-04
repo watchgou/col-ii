@@ -7,16 +7,9 @@ use web_sys::{Request, RequestInit, Response};
 mod create_element;
 mod enums;
 mod transfer;
+use enums::constant;
 use enums::err::JsErr;
 use transfer::transfer::RequestTran;
-
-static GET: &str = "GET";
-
-static POST: &str = "POST";
-
-static APPLICATION_JSON: &str = "application/json";
-
-static CONTENT_TYPE: &str = "Content-Type";
 
 #[wasm_bindgen]
 pub fn create_element(selectors: String, html: String, attribute: String, content: String) {
@@ -37,7 +30,7 @@ pub fn create_element(selectors: String, html: String, attribute: String, conten
 #[wasm_bindgen]
 pub async fn get(url: String) -> Result<JsValue, JsValue> {
     let mut opts = RequestInit::new();
-    opts.method(GET);
+    opts.method(constant::GET);
     opts.mode(web_sys::RequestMode::Cors);
 
     let request = Request::new_with_str_and_init(&url, &opts)?;
@@ -51,7 +44,7 @@ pub async fn get(url: String) -> Result<JsValue, JsValue> {
 #[wasm_bindgen]
 pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     let mut opts = RequestInit::new();
-    opts.method(POST);
+    opts.method(constant::POST);
     opts.mode(web_sys::RequestMode::Cors);
     if !val.is_empty() {
         let param = JsValue::from(val);
@@ -59,7 +52,9 @@ pub async fn post(url: String, val: String) -> Result<JsValue, JsValue> {
     }
 
     let request = Request::new_with_str_and_init(&url, &opts)?;
-    request.headers().set(CONTENT_TYPE, APPLICATION_JSON)?;
+    request
+        .headers()
+        .set(constant::CONTENT_TYPE, constant::APPLICATION_JSON)?;
     let window = web_sys::window().unwrap();
     let resp_value = JsFuture::from(window.fetch_with_request(&request)).await?;
     let value: Response = resp_value.dyn_into()?;

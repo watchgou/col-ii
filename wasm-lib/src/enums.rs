@@ -3,7 +3,6 @@ use mockall::{automock, predicate::*};
 
 pub mod err {
 
-
     pub enum JsErr<'a> {
         TagNotExist(&'a str),
         ElementCreateFailed(&'a str),
@@ -20,6 +19,18 @@ pub mod err {
         }
     }
 }
+
+pub mod constant {
+
+    pub static GET: &str = "GET";
+
+    pub static POST: &str = "POST";
+
+    pub static APPLICATION_JSON: &str = "application/json";
+
+    pub static CONTENT_TYPE: &str = "Content-Type";
+}
+
 #[cfg_attr(test, automock)]
 pub trait Fool {
     fn foo(&self, x: u32) -> u32;
