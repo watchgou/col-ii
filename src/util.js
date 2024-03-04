@@ -2,11 +2,11 @@ import * as wasm from "../wasm-lib/pkg"
 import * as transfer from "./protos/transfer"
 
 
-export function encodeRequestTran(data){
-   return transfer.encodeRequestTran(data);
+export function encodeRequestTran(data) {
+    return transfer.encodeRequestTran(data);
 }
 
-export function decodeRequestTran(binary){
+export function decodeRequestTran(binary) {
     return transfer.decodeRequestTran(binary);
 }
 
@@ -25,10 +25,10 @@ export function set(url, data, callback) {
 
 
 
-export function wasmCreateElement(){
+export function wasmCreateElement() {
     wasm.create_tag();
 }
 
-export function createElement(selector,html,attribute,content){
-    wasm.create_element(selector,html,attribute,content);
+export function createElement(selector, html, attribute, content) {
+    wasm.create_element(selector, html, attribute, content);
 }
